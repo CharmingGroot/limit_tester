@@ -9,7 +9,7 @@ pip install -r requirements.txt
 python tissue_wrapper.py
 ```
 
-브라우저에서 `http://localhost:8091` 접속
+브라우저에서 `http://localhost:8091` 접속.
 
 ## 기능
 
