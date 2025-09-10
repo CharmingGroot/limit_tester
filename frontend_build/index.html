@@ -20,7 +20,7 @@
     }
     
     .container {
-      max-width: 800px;
+      max-width: 1400px;
       margin: 24px auto;
       padding: 0 20px;
     }
@@ -36,6 +36,20 @@
       font-size: 16px;
       color: #8b95a1;
       margin-bottom: 32px;
+    }
+    
+    .form-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    
+    @media (max-width: 1200px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
     }
     
     .card {
@@ -375,11 +389,12 @@
     <p class="subtitle">서버의 동시 처리 성능을 확인해보세요</p>
     
     <form id="testForm">
-      <div class="card">
-        <div class="card-title">
-          <span class="emoji">⚡</span>
-          기본 설정
-        </div>
+      <div class="form-grid">
+        <div class="card">
+          <div class="card-title">
+            <span class="emoji">⚡</span>
+            기본 설정
+          </div>
         
         <div class="form-row">
           <label>동시 사용자 수</label>
@@ -406,13 +421,13 @@
             <option value="PATCH">PATCH</option>
           </select>
         </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-title">
-          <span class="emoji">📋</span>
-          헤더 설정
         </div>
+        
+        <div class="card">
+          <div class="card-title">
+            <span class="emoji">📋</span>
+            헤더 설정
+          </div>
         
         <div id="headerContainer">
           <div class="header-item">
@@ -437,9 +452,9 @@
           헤더 추가
         </button>
         <div id="headerError" class="error-message" style="display:none;"></div>
-      </div>
-      
-      <div class="card">
+        </div>
+        
+        <div class="card">
         <div class="card-title">
           <span class="emoji">📝</span>
           요청 본문
