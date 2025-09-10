@@ -26,11 +26,11 @@ async def start_test(request):
     headers = data.get("headers", {})
     body = data.get("body", None)
     ws_id = data.get("ws_id")
-    end_flags = data.get("end_flags", ['"type":"complete"', '"type":"end"', '"is_final":true'])  # 완료 플래그들
+    end_flags = data.get("end_flags", ['"type": "end"', '"streaming_completed": true', '"type": "complete"'])  # 완료 플래그들
 
     # 각 세션별로 비동기 요청 실행
     async def run_session(session_id):
-        async with httpx.AsyncClient(timeout=180.0) as client:
+        async with httpx.AsyncClient(timeout=600.0) as client:
             try:
                 req_args = {"headers": headers}
                 if method in ["POST", "PUT", "PATCH"]:
@@ -83,7 +83,7 @@ async def start_test(request):
                         })
                         
             except httpx.TimeoutException:
-                error_msg = "ERROR: 요청 시간 초과 (3분)"
+                error_msg = "ERROR: 요청 시간 초과 (10분)"
                 if ws_id in sessions:
                     await sessions[ws_id].send_json({"session": session_id, "response": error_msg})
             except Exception as e:
